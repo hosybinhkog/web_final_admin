@@ -24,8 +24,8 @@ const userReducer = (
     case LOGIN_REQUEST:
     case LOAD_USER_REQUEST:
       return {
-        loading: false,
-        isAuthenticated: true,
+        loading: true,
+        isAuthenticated: false,
       };
     case LOGIN_SUCCESS:
     case LOAD_USER_SUCCESS:

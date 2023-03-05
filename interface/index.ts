@@ -4,7 +4,7 @@ export interface Istate {
 }
 
 export interface IstateUser extends Istate {
-  user?: User | undefined;
+  user?: User;
   isAuthenticated?: boolean;
 }
 
@@ -21,4 +21,5 @@ export interface User {
   address?: string;
   profileDescription?: string;
   isStreammer?: boolean;
+  role?: string;
 }

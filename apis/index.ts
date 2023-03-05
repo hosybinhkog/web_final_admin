@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosAdminClent = axios.create({
-  baseURL: "http://localhost:5555/",
+  baseURL: "http://localhost:4444/api/v1",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -11,7 +11,6 @@ const axiosAdminClent = axios.create({
 
 axiosAdminClent.interceptors.response.use(
   function (response) {
-    if (response.data) return response.data;
     return response;
   },
   function (error) {
@@ -27,3 +26,5 @@ axiosAdminClent.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+export default axiosAdminClent;

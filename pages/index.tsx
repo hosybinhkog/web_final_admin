@@ -1,7 +1,8 @@
 import { NextPage } from "next";
+import LayoutAdmin from "../layouts";
 
 const DashBoard: NextPage = () => {
-  return <div>Home</div>;
+  return <LayoutAdmin>Hello</LayoutAdmin>;
 };
 
 export default DashBoard;

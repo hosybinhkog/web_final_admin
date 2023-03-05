@@ -15,12 +15,18 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated || user?.role !== "admin") {
-      router.push("/login");
+    if (!loading) {
+      // @ts-ignore
+      if (!isAuthenticated || user?.role !== "admin") {
+        router.push("/signin");
+      }
     }
-  }, [isAuthenticated, user.role]);
+    // @ts-ignore
+  }, [isAuthenticated, user, loading]);
 
-  return <>{loading === true ? <Loading /> : children}</>;
+  return (
+    <>{loading === true ? <Loading /> : <>{isAuthenticated && children}</>}</>
+  );
 };
 
 export default AdminRoute;
