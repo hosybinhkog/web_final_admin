@@ -1,16 +1,27 @@
-import "../styles/app.scss";
-import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
+import type { AppProps } from "next/app";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Provider } from "react-redux";
-import { useEffect, useState } from "react";
+import "../styles/app.scss";
 
 import store from "../redux/store";
-import { Toaster } from "react-hot-toast";
 
-import { Loading, Transition } from "../components";
+import { NextPage } from "next";
+import { DismissableToast, Loading, Transition } from "../components";
 import { loadUser } from "../redux/actions/user.action";
+import ModalContext from "../contexts/ModelContext";
+import "react-quill/dist/quill.snow.css";
 
-function MyApp({ Component, pageProps, router }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
   const [hasWindow, setHasWindow] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,7 +33,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
     // @ts-ignore
     store.dispatch(loadUser());
-  }, [store]);
+  }, []);
 
   if (!hasWindow) {
     return <Loading />;
@@ -41,8 +52,10 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           }
         >
           <Provider store={store}>
-            <Toaster position='top-center' toastOptions={{ duration: 500 }} />
-            <Component {...pageProps} key={router.asPath} />;
+            <ModalContext>
+              <DismissableToast />
+              {getLayout(<Component {...pageProps} key={router.asPath} />)}
+            </ModalContext>
           </Provider>
         </AnimatePresence>
       </Transition>

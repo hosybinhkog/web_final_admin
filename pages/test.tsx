@@ -1,7 +1,14 @@
-import React from "react";
+import { NextPage } from "next";
+import { Button, Checkbox, Input } from "../components";
 
-const Test = () => {
-  return <div>Test</div>;
+const Test: NextPage = () => {
+  return (
+    <div className=''>
+      <Checkbox />
+      <Button>Button</Button>
+      <Input />
+    </div>
+  );
 };
 
 export default Test;

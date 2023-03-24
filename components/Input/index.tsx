@@ -7,9 +7,7 @@ interface InputAdminProps {
   name: string;
   type?: string;
   placeholder?: string;
-  onChange?: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   onBlur?: () => void;
   row?: number;
   dataSelect?: any;
@@ -32,10 +30,7 @@ const InputAdmin: React.FC<InputAdminProps> = ({
   if (as === "textarea") {
     return (
       <>
-        <label
-          htmlFor={name}
-          className='block mb-2 text-md font-medium text-gray-900'
-        >
+        <label htmlFor={name} className='block mb-2 text-md font-medium text-gray-900'>
           {label}
         </label>
         <textarea
@@ -55,10 +50,7 @@ const InputAdmin: React.FC<InputAdminProps> = ({
   if (type === "file") {
     return (
       <>
-        <label
-          className='block mb-2 text-sm font-medium text-gray-900 '
-          htmlFor={name}
-        >
+        <label className='block mb-2 text-sm font-medium text-gray-900 ' htmlFor={name}>
           {label}
         </label>
         <input
@@ -66,9 +58,10 @@ const InputAdmin: React.FC<InputAdminProps> = ({
           id='file_input'
           multiple={multible}
           type='file'
-          accept='images/'
+          accept='image/'
           onChange={onChange}
           onBlur={onBlur}
+          name={name}
         />
       </>
     );
@@ -77,10 +70,7 @@ const InputAdmin: React.FC<InputAdminProps> = ({
   if (as === "select") {
     return (
       <>
-        <label
-          htmlFor={name}
-          className='block mb-2 text-sm font-medium text-gray-900 '
-        >
+        <label htmlFor={name} className='block mb-2 text-sm font-medium text-gray-900 '>
           {label}
         </label>
         <select
@@ -103,10 +93,7 @@ const InputAdmin: React.FC<InputAdminProps> = ({
   return (
     <>
       <div className='mb-6'>
-        <label
-          htmlFor={name}
-          className='block mb-2 text-md font-semibold text-gray-900 '
-        >
+        <label htmlFor={name} className='block mb-2 text-md font-semibold text-gray-900 '>
           {label}
         </label>
         <input

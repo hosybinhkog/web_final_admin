@@ -34,6 +34,11 @@ export const sidebarRoutes = [
     icon: NewspaperIcon,
   },
   {
+    display_name: "TypeReport",
+    route: "/types-report",
+    icon: OfficeBuildingIcon,
+  },
+  {
     display_name: "Products",
     route: "/product",
     icon: QrcodeIcon,
@@ -44,8 +49,8 @@ export const sidebarRoutes = [
     icon: ShoppingCartIcon,
   },
   {
-    display_name: "categories",
-    route: "/category",
+    display_name: "categories-stream",
+    route: "/categories-stream",
     icon: ViewListIcon,
   },
   {
@@ -58,6 +63,7 @@ export const sidebarRoutes = [
     route: "/inventory",
     icon: OfficeBuildingIcon,
   },
+
   {
     display_name: "settings",
     route: "/settings",
