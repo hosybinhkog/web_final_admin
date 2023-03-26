@@ -1,12 +1,12 @@
+import { parseTime } from "@/libs/helper";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { Loading, Seo } from "../../components";
+import { CLEAR_GET_ALL_CATEGORY_STREAM_FAILURE } from "../../constants/redux.contants";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import LayoutAdmin from "../../layouts";
-import toast from "react-hot-toast";
 import { getAllCategoryStream } from "../../redux/actions/categoryStream.actions";
-import { CLEAR_GET_ALL_CATEGORY_STREAM_FAILURE } from "../../constants/redux.contants";
-import moment from "moment";
 
 const CategoriesStreamPage = () => {
   const router = useRouter();
@@ -117,7 +117,7 @@ const CategoriesStreamPage = () => {
                               </td>
 
                               <td className='text-md text-gray-900 font-semibold px-6 py-4 whitespace-nowrap'>
-                                {moment(item?.createdAt).format("MMMM Do YYYY")}
+                                {parseTime(item?.createdAt, "")}
                               </td>
                               <td className='text-md text-gray-900 font-semibold px-6 py-4 whitespace-nowrap'>
                                 <button

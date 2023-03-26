@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Dropdown from "../Dropdown";
 import Loading from "../Loading";
-
+import imageDefaault from "@/assets/images/avatar-default.gif";
 interface userDisplay {
   displayName: string;
   image: string;
@@ -16,23 +16,9 @@ interface userDisplay {
 const renderUserToggle = (user: userDisplay) => (
   <div className='topnav__right-user'>
     <div className='topnav__right-user__image'>
-      <img src={user?.image} alt='UserImage' />
+      <img src={user?.image || imageDefaault.src} alt='UserImage' />
     </div>
     <div className='topnav__right-user__name'>{user?.displayName}</div>
-  </div>
-);
-
-const renderNotificationItem = (item: any, index: number) => (
-  <div className='notification-item' key={index}>
-    <item.icon className='h-5 w-5' />
-    <span>{item.content}</span>
-  </div>
-);
-
-const renderUserMenu = (item: any, index: number) => (
-  <div key={index} className='notification-item'>
-    <item.icon className='h-5 w-5 text-gray-500' />
-    <span>{item.content}</span>
   </div>
 );
 

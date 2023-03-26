@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import "../styles/app.scss";
+import nprogress from "nprogress";
 
 import store from "../redux/store";
 
@@ -11,6 +12,7 @@ import { DismissableToast, Loading, Transition } from "../components";
 import { loadUser } from "../redux/actions/user.action";
 import ModalContext from "../contexts/ModelContext";
 import "react-quill/dist/quill.snow.css";
+// import "nprogress/nprogress.css";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -34,6 +36,11 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
     // @ts-ignore
     store.dispatch(loadUser());
   }, []);
+
+  useEffect(() => {
+    nprogress.start();
+    nprogress.done();
+  }, [router.pathname]);
 
   if (!hasWindow) {
     return <Loading />;

@@ -39,8 +39,8 @@ export const sidebarRoutes = [
     icon: OfficeBuildingIcon,
   },
   {
-    display_name: "Products",
-    route: "/product",
+    display_name: "Lives",
+    route: "/lives",
     icon: QrcodeIcon,
   },
   {

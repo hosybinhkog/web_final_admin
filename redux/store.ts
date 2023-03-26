@@ -1,3 +1,4 @@
+import { getAllUserReducer } from "./reducers/user.reducers";
 import {
   createCategoryStreamCategoryReducer,
   getAllCategoryStreamReducer,
@@ -5,11 +6,7 @@ import {
   updateCategoryStreamReducer,
 } from "./reducers/category.reducer";
 import { getAllDataReducer } from "./reducers/commom.reducer";
-import {
-  applyMiddleware,
-  combineReducers,
-  legacy_createStore as createStore,
-} from "redux";
+import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
@@ -35,6 +32,7 @@ const reducers = combineReducers({
   getCategoryStream: getCategoryStreamReducer,
   createCategoryStream: createCategoryStreamCategoryReducer,
   updateCategoryStream: updateCategoryStreamReducer,
+  getAllUserReducer,
 });
 
 const middleware = [thunk];

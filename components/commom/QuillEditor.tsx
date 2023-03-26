@@ -7,10 +7,7 @@ interface QuillEditorProps {
   setContentText: (value: string) => void;
 }
 
-const QuillEditor: React.FC<QuillEditorProps> = ({
-  contentText,
-  setContentText,
-}) => {
+const QuillEditor: React.FC<QuillEditorProps> = ({ contentText, setContentText }) => {
   const handleChangeContentText = (value: string) => {
     setContentText(value);
   };

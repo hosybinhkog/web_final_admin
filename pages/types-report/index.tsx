@@ -1,12 +1,12 @@
+import { parseTime } from "@/libs/helper";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { Loading, Seo } from "../../components";
+import { CLEAR_ERROR_GET_ALL_REPORTS_TYPE } from "../../constants/redux.contants";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import LayoutAdmin from "../../layouts";
 import { getAllReportTypes } from "../../redux/actions/reportType.actions";
-import toast from "react-hot-toast";
-import { CLEAR_ERROR_GET_ALL_REPORTS_TYPE } from "../../constants/redux.contants";
-import moment from "moment";
 
 const TypesReport = () => {
   const router = useRouter();
@@ -34,19 +34,13 @@ const TypesReport = () => {
         <Loading />
       ) : (
         <div className='my-5 mx-5'>
-          <h1 className='text-3xl font-extrabold text-gray-700 mb-4'>
-            Manage types - report
-          </h1>
+          <h1 className='text-3xl font-extrabold text-gray-700 mb-4'>Manage types - report</h1>
           <h3 className='pl-4 border-4 border-l-gray-400 text-xl font-semibold text-gray-600 '>
             Admin Page
           </h3>
-          <p className='text-base text-gray-400 mb-2 mt-2'>
-            web - livestream - hutech
-          </p>
+          <p className='text-base text-gray-400 mb-2 mt-2'>web - livestream - hutech</p>
           <p className='text-base text-blue-500 mb-2 mt-2 font-extrabold'>
-            <span className='font-bold text-gray-900'>
-              Count report type : {` `}
-            </span>
+            <span className='font-bold text-gray-900'>Count report type : {` `}</span>
             {reportTypesCount}
           </p>
           <div className='flex flex-col'>
@@ -58,31 +52,31 @@ const TypesReport = () => {
                       <tr>
                         <th
                           scope='col'
-                          className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
+                          className='text-sm font-medium text-gray-900 px-2 py-2 text-left'
                         >
                           #
                         </th>
                         <th
                           scope='col'
-                          className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
+                          className='text-sm font-medium text-gray-900 px-2 py-2 text-left'
                         >
                           Title
                         </th>
                         <th
                           scope='col'
-                          className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
+                          className='text-sm font-medium text-gray-900 px-2 py-2 text-left'
                         >
                           Description
                         </th>
                         <th
                           scope='col'
-                          className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
+                          className='text-sm font-medium text-gray-900 px-2 py-2 text-left'
                         >
                           CreatedAt
                         </th>
                         <th
                           scope='col'
-                          className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
+                          className='text-sm font-medium text-gray-900 px-2 py-2 text-left'
                         >
                           Action
                         </th>
@@ -94,13 +88,13 @@ const TypesReport = () => {
                           // ?.slice(size, size + sizePage)
                           .map((item: any, index: number) => (
                             <tr key={item._id} className='border-b rounded-md'>
-                              <td className='px-6 py-4 whitespace-nowrap text-md font-medium text-gray-900'>
+                              <td className='px-2 py-1 whitespace-nowrap text-md font-medium text-gray-900'>
                                 {index + 1}
                               </td>
-                              <td className='text-md text-gray-900 font-semibold px-6 py-4 whitespace-nowrap max-w-[400px] truncate'>
+                              <td className='text-md text-gray-900 font-semibold px-2 py-1 whitespace-nowrap max-w-[400px] truncate'>
                                 {item?.title}
                               </td>
-                              <td className='text-md text-gray-900 font-semibold px-6 py-4 whitespace-nowrap max-w-[700px] truncate'>
+                              <td className='text-md text-gray-900 font-semibold px-2 py-1 whitespace-nowrap max-w-[700px] truncate'>
                                 <div
                                   dangerouslySetInnerHTML={{
                                     __html: item?.description,
@@ -108,10 +102,10 @@ const TypesReport = () => {
                                 ></div>
                               </td>
 
-                              <td className='text-md text-gray-900 font-semibold px-6 py-4 whitespace-nowrap'>
-                                {moment(item?.createdAt).format("MMMM Do YYYY")}
+                              <td className='text-md text-gray-900 font-semibold px-2 py-1 whitespace-nowrap'>
+                                {parseTime(item?.createdAt, "")}
                               </td>
-                              <td className='text-md text-gray-900 font-semibold px-6 py-4 whitespace-nowrap'>
+                              <td className='text-md text-gray-900 font-semibold px-2 py-1 whitespace-nowrap'>
                                 <button
                                   type='button'
                                   className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 disabled:opacity-50'
@@ -120,20 +114,14 @@ const TypesReport = () => {
                                   Delete
                                 </button>
                                 <button
-                                  onClick={() =>
-                                    router.push(
-                                      `/types-report/update/${item?._id}`
-                                    )
-                                  }
+                                  onClick={() => router.push(`/types-report/update/${item?._id}`)}
                                   type='button'
                                   className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
                                 >
                                   Edit
                                 </button>
                                 <button
-                                  onClick={() =>
-                                    router.push(`/types-report/${item?._id}`)
-                                  }
+                                  onClick={() => router.push(`/types-report/${item?._id}`)}
                                   type='button'
                                   className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
                                 >

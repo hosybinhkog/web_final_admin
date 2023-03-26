@@ -9,6 +9,10 @@ import {
   LOAD_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
+  GET_CUSTOMER_REQUEST,
+  GET_CUSTOMER_SUCCESS,
+  GET_CUSTOMER_FAILER,
+  CLEAR_GET_CUSTOMER_FAILER,
 } from "../../constants/redux.contants";
 
 interface IactionUserReducer {
@@ -16,10 +20,7 @@ interface IactionUserReducer {
   payload: any;
 }
 
-const userReducer = (
-  state: IstateUser = { user: {} },
-  action: IactionUserReducer
-) => {
+const userReducer = (state: IstateUser = { user: {} }, action: IactionUserReducer) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case LOAD_USER_REQUEST:
@@ -71,3 +72,33 @@ const userReducer = (
 };
 
 export default userReducer;
+
+export const getAllUserReducer = (state: any, action: any) => {
+  switch (action.type) {
+    case GET_CUSTOMER_REQUEST:
+      return {
+        loading: true,
+        success: false,
+        customers: null,
+      };
+    case GET_CUSTOMER_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        customers: action.payload,
+      };
+    case GET_CUSTOMER_FAILER:
+      return {
+        loading: false,
+        success: false,
+        error: action.payload,
+      };
+    case CLEAR_GET_CUSTOMER_FAILER:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return { ...state };
+  }
+};
