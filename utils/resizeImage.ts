@@ -13,7 +13,7 @@ export const resizeImage = function (file: any, maxSize = 500) {
     for (let i = 0; i < max; i++) {
       ia[i] = bytes.charCodeAt(i);
     }
-    return new Blob([ia], { type: mime });
+    return new Blob([ia], {type: mime});
   };
   const resize = function () {
     let width = image.width;

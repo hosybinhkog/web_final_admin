@@ -1,6 +1,5 @@
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   swcMinify: true,
   images: {
     domains: ["t3.ftcdn.net"],

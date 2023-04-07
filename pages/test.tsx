@@ -1,13 +1,11 @@
 import { NextPage } from "next";
-import { Button, Checkbox, Input } from "../components";
+import  Button  from "@/custom-binh/Button";
 
 const Test: NextPage = () => {
   return (
-    <div className=''>
-      <Checkbox />
-      <Button>Button</Button>
-      <Input />
-    </div>
+   <div>
+     <Button variant={"default"} size="lg" children={"hello"}></Button>
+   </div>
   );
 };
 

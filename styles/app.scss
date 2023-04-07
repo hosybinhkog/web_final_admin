@@ -10,3 +10,17 @@
 @import "./components/table";
 @import "./components/topnav";
 @import "./components/nprogress";
+
+
+
+@media only screen and (max-width: 1200px){
+  html{
+    font-size: 80%;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  html{
+    font-size: 56.25%;
+  }
+}

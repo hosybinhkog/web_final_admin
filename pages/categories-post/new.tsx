@@ -1,12 +1,11 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { FormEvent, useState, useEffect, ChangeEvent } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { InputAdmin } from "../../components";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import LayoutAdmin from "../../layouts";
-import toast from "react-hot-toast";
-import { UPDATE_CATEGORY_RESET } from "../../constants/redux.contants";
+import { UPDATE_CATEGORY_RESET } from "@/constants/redux.contants";
 
 const CreateNewCategoryPost: NextPage = () => {
   const dispatch = useAppDispatch();
@@ -26,11 +25,11 @@ const CreateNewCategoryPost: NextPage = () => {
     formData.set("description", description);
     formData.append("images", images as string);
 
-    await dispatch(formData);
+    dispatch(formData);
   };
 
   const handleDataChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
     const target = e.target as HTMLInputElement;
     if (!target.files) return;
@@ -67,43 +66,43 @@ const CreateNewCategoryPost: NextPage = () => {
       <Head>
         <title>Create Category Stream</title>
       </Head>
-      <h5 className='text-2xl font-extrabold text-gray-700'>Create Category Stream page</h5>
+      <h5 className="text-2xl font-extrabold text-gray-700">Create Category Stream page</h5>
       <form onSubmit={handleFormSubmitNewProduct}>
-        <div className='grid gap-3 mb-6'>
+        <div className="grid gap-3 mb-6">
           <InputAdmin
-            name='title'
-            label='Name product'
+            name="title"
+            label="Name product"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <InputAdmin
-            name='description'
+            name="description"
             value={description}
-            as='textarea'
-            label='Description'
+            as="textarea"
+            label="Description"
             onChange={(e) => setDescription(e.target.value)}
           />
           <InputAdmin
-            name='images'
-            type='file'
+            name="images"
+            type="file"
             value={images as string}
             onChange={handleDataChange}
-            label='Images'
+            label="Images"
           />
-          <div className='flex gap-2 items-center justify-center'>
+          <div className="flex gap-2 items-center justify-center">
             {imagesPreview && (
               //@ts-ignore
               <img
-                className='object-cover w-[400px] h-[300px] rounded-md'
+                className="object-cover w-[400px] h-[300px] rounded-md"
                 src={imagesPreview as string}
-                alt='Avatar priview'
+                alt="Avatar priview"
               />
             )}
           </div>
           <p>{error}</p>
           <button
-            type='submit'
-            className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+            type="submit"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Submit
           </button>

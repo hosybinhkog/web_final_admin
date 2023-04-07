@@ -18,6 +18,7 @@ import {
   getReportTypeReducer,
   updateReportTypeReducer,
 } from "./reducers/reportType.reducer";
+import { getAllStreammerReducers } from "@/redux/reducers/streammers.reducer";
 
 const initialState = {};
 
@@ -33,6 +34,7 @@ const reducers = combineReducers({
   createCategoryStream: createCategoryStreamCategoryReducer,
   updateCategoryStream: updateCategoryStreamReducer,
   getAllUserReducer,
+  getAllStreammer: getAllStreammerReducers
 });
 
 const middleware = [thunk];

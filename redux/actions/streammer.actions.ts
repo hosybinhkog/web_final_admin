@@ -1,5 +1,6 @@
 import axiosAdminClent from "@/apis";
 import {
+  CLEAR_ALL_STREAMMER_FAILURE,
   GET_ALL_STREAMMER_FAILURE,
   GET_ALL_STREAMMER_REQUEST,
   GET_ALL_STREAMMER_SUCCESS,
@@ -17,7 +18,13 @@ export const getAllStreammer = () => async (dispatch: Dispatch) => {
     dispatch({
       type: GET_ALL_STREAMMER_FAILURE,
       // @ts-ignore
-      payload: error?.response?.data?.message || "",
+      payload: error?.response?.data?.message || "Lỗi server",
     });
   }
 };
+
+
+export const clearErrorGetAllStreammer = () => (dispatch: Dispatch) => {
+  dispatch({ type: CLEAR_ALL_STREAMMER_FAILURE })
+}
+

@@ -54,8 +54,8 @@ export const sidebarRoutes = [
     icon: ViewListIcon,
   },
   {
-    display_name: "discount",
-    route: "/discount",
+    display_name: "streammers",
+    route: "/streammers",
     icon: GiftIcon,
   },
   {
