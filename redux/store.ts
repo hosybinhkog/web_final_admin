@@ -1,24 +1,29 @@
-import { getAllUserReducer } from "./reducers/user.reducers";
-import {
-  createCategoryStreamCategoryReducer,
-  getAllCategoryStreamReducer,
-  getCategoryStreamReducer,
-  updateCategoryStreamReducer,
-} from "./reducers/category.reducer";
-import { getAllDataReducer } from "./reducers/commom.reducer";
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-import { userReducer } from "./reducers";
 import {
+  userReducer,
+  getAllCategoryPostReducer,
+  deletePostReducer,
+  togglePublicPostReducer,
+  getCategoryPostReducer,
+  createCategoryPostReducer,
+  updateCategoryPostReducer,
+  fetchPostsReducer,
+  createCategoryStreamCategoryReducer,
+  getAllCategoryStreamReducer,
+  getCategoryStreamReducer,
+  updateCategoryStreamReducer,
+  getAllDataReducer,
   createReportTypeReducer,
   getAllReportTypeReducer,
   getReportTypeReducer,
   updateReportTypeReducer,
-} from "./reducers/reportType.reducer";
-import { getAllStreammerReducers } from "@/redux/reducers/streammers.reducer";
+  getAllStreammerReducers,
+  getAllUserReducer,
+} from "./reducers";
 
 const initialState = {};
 
@@ -34,7 +39,14 @@ const reducers = combineReducers({
   createCategoryStream: createCategoryStreamCategoryReducer,
   updateCategoryStream: updateCategoryStreamReducer,
   getAllUserReducer,
-  getAllStreammer: getAllStreammerReducers
+  getAllStreammer: getAllStreammerReducers,
+  getAllCategoryPostReducer,
+  fetchPostsReducer,
+  deletePostReducer,
+  togglePublicPostReducer,
+  createCategoryPostReducer,
+  getCategoryPostReducer,
+  updateCategoryPostReducer,
 });
 
 const middleware = [thunk];
