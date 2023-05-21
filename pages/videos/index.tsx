@@ -1,36 +1,35 @@
-import { Loading, Seo } from "@/components";
-import { CLEAR_GET_STREAMS_ERROR } from "@/constants/redux.contants";
+import { Loading } from "@/components";
+import { CLEAR_GET_VIDEOS_ERROR } from "@/constants/redux.contants";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import LayoutAdmin from "@/layouts";
 import { parseTime } from "@/libs/helper";
-import logger from "@/libs/logger";
-import { getStreams } from "@/redux/actions/streams.actions";
+import { getVideos } from "@/redux/actions/video.actions";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
-const Lives: NextPage = () => {
+const Videos: NextPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { loading, streams, error } = useAppSelector((state) => state.getStreamsReducer);
+  const { loading, videos, error } = useAppSelector((state) => state.getVideosReducer);
 
   useEffect(() => {
     if (error) {
       toast.error(error);
-      dispatch({ type: CLEAR_GET_STREAMS_ERROR });
+      dispatch({ type: CLEAR_GET_VIDEOS_ERROR });
       router.push("/");
     }
   }, [error]);
 
   useEffect(() => {
-    dispatch(getStreams());
+    dispatch(getVideos());
   }, []);
 
   return (
     <LayoutAdmin>
       <div className='my-5 mx-5'>
-        <h1 className='text-3xl font-extrabold text-gray-700 mb-4'>Manage lives page</h1>
+        <h1 className='text-3xl font-extrabold text-gray-700 mb-4'>Manage videos page</h1>
         <h3 className='pl-4 border-4 border-l-gray-400 text-xl font-semibold text-gray-600 '>
           Admin Page
         </h3>
@@ -108,8 +107,8 @@ const Lives: NextPage = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {streams?.length > 0 ? (
-                        streams.map((item: any, index: number) => (
+                      {videos?.length > 0 ? (
+                        videos.map((item: any, index: number) => (
                           <tr key={item._id} className='border-b rounded-md'>
                             <td className='px-2 py-1 whitespace-nowrap text-md font-medium text-gray-900'>
                               {index + 1}
@@ -174,4 +173,4 @@ const Lives: NextPage = () => {
   );
 };
 
-export default Lives;
+export default Videos;

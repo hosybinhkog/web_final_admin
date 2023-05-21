@@ -5,6 +5,9 @@ import {
   GET_ALL_POST_FAIL,
   GET_ALL_POST_REQUEST,
   GET_ALL_POST_SUCCESS,
+  GET_POST_ERROR,
+  GET_POST_REQUEST,
+  GET_POST_SUCCESS,
 } from "@/constants/redux.contants";
 import { Dispatch } from "redux";
 import {
@@ -26,6 +29,22 @@ export const getPosts = () => async (dispatch: Dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_POST_FAIL,
+      // @ts-ignore
+      payload: error?.response?.data?.message || "get posts errror",
+    });
+  }
+};
+
+export const getPost = (id: string) => async (dispatch: Dispatch) => {
+  try {
+    dispatch({ type: GET_POST_REQUEST });
+
+    const { data } = await axiosAdminClent.get("/post/" + id);
+
+    dispatch({ type: GET_POST_SUCCESS, payload: data.post });
+  } catch (error) {
+    dispatch({
+      type: GET_POST_ERROR,
       // @ts-ignore
       payload: error?.response?.data?.message || "get posts errror",
     });

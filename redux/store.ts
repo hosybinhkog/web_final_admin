@@ -1,3 +1,8 @@
+import { getAllReportStreamducer, getReportStreamReducer } from "./reducers/report-stream.reducer";
+import { getAllReportPostReducer, getReportPostReducer } from "./reducers/report-post.reducer";
+import { updateReportTypePostReducer } from "./reducers/report-types-post.reducer";
+import { getVideoReducer } from "./reducers/video.reducer";
+import getVideosReducer from "./reducers/video.reducer";
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -23,7 +28,13 @@ import {
   updateReportTypeReducer,
   getAllStreammerReducers,
   getAllUserReducer,
+  PostReducer,
+  createReportTypePostReducer,
+  getAllReportTypePostReducer,
+  getReportTypePostReducer,
 } from "./reducers";
+
+import getStreamsReducer, { getStreamReducer } from "./reducers/stream.reducer";
 
 const initialState = {};
 
@@ -47,6 +58,19 @@ const reducers = combineReducers({
   createCategoryPostReducer,
   getCategoryPostReducer,
   updateCategoryPostReducer,
+  PostReducer,
+  getStreamsReducer,
+  getStreamReducer,
+  getVideosReducer,
+  getVideoReducer,
+  createReportTypePostReducer,
+  getAllReportTypePostReducer,
+  getReportTypePostReducer,
+  updateReportTypePostReducer,
+  getAllReportPostReducer,
+  getReportPostReducer,
+  getAllReportStreamducer,
+  getReportStreamReducer,
 });
 
 const middleware = [thunk];

@@ -91,6 +91,13 @@ const UpdateCategoryStream = () => {
     if (router.query.id) dispatch(getCategoryStreamById(router.query.id as string));
   }, [router.query.id]);
 
+  useEffect(() => {
+    if (categoryStream) {
+      setDataInput({ title: categoryStream?.title, description: categoryStream?.description });
+      setImagePreview(categoryStream?.thumbnail?.url);
+    }
+  }, [categoryStream]);
+
   return (
     <LayoutAdmin>
       <Seo />

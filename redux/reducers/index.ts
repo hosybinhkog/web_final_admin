@@ -7,3 +7,6 @@ export * from "./reportType.reducer";
 export * from "./streammers.reducer";
 export * from "./user.reducers";
 export * from "./category.reducer";
+export * from "./post.reducer";
+export * from "./video.reducer";
+export * from "./report-types-post.reducer";

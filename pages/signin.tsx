@@ -68,9 +68,7 @@ const Login: NextPage = () => {
                             src='https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ'
                             alt='logo'
                           />
-                          <h4 className='text-xl font-semibold mt-1 mb-12 pb-1'>
-                            Amazone DB
-                          </h4>
+                          <h4 className='text-xl font-semibold mt-1 mb-12 pb-1'>DB Page</h4>
                         </div>
                         <form onSubmit={handleLoginAdmin}>
                           <p className='mb-4'>Please login to admin account</p>
@@ -118,15 +116,12 @@ const Login: NextPage = () => {
                       }}
                     >
                       <div className='text-white px-4 py-6 md:p-12 md:mx-6'>
-                        <h4 className='text-xl font-semibold mb-6'>
-                          Amazon for ADMIN PAGE
-                        </h4>
+                        <h4 className='text-xl font-semibold mb-6'>Amazon for ADMIN PAGE</h4>
                         <p className='text-sm text-black'>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequat.
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                          commodo consequat.
                         </p>
                       </div>
                     </div>

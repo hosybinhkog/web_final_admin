@@ -39,15 +39,21 @@ export const sidebarRoutes = [
     icon: OfficeBuildingIcon,
   },
   {
+    display_name: "TypeReportPost ",
+    route: "/types-report-post",
+    icon: OfficeBuildingIcon,
+  },
+  {
     display_name: "Lives",
     route: "/lives",
     icon: QrcodeIcon,
   },
   {
-    display_name: "Orders",
-    route: "/order",
+    display_name: "Videos",
+    route: "/videos",
     icon: ShoppingCartIcon,
   },
+
   {
     display_name: "categories-stream",
     route: "/categories-stream",
@@ -59,9 +65,14 @@ export const sidebarRoutes = [
     icon: GiftIcon,
   },
   {
-    display_name: "inventory",
-    route: "/inventory",
+    display_name: "reports - posts",
+    route: "/reports",
     icon: OfficeBuildingIcon,
+  },
+  {
+    display_name: "reports - streams",
+    route: "/reports-streams",
+    icon: CogIcon,
   },
 
   {
