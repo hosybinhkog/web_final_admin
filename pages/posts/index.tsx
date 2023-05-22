@@ -146,16 +146,23 @@ const Posts = () => {
                                 <button
                                   type='button'
                                   onClick={() => router.push(`/posts/view/${item?._id}`)}
-                                  className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
+                                  className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-1 py-1 mr-1 mb-1 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
                                 >
                                   Views
                                 </button>
                                 <button
                                   onClick={() => handleTogglePublishPost(item?._id)}
                                   type='button'
-                                  className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
+                                  className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-1 py-1 mr-1 mb-1 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
                                 >
                                   {item?.status !== "NO_PUBLISH" ? "NO_PUBLISH" : "PUBLISH"}
+                                </button>
+                                <button
+                                  type='button'
+                                  onClick={() => router.push(`/posts/list-post/${item?._id}`)}
+                                  className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md px-1 py-1 mr-1 mb-1 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
+                                >
+                                  Views List Report
                                 </button>
                               </td>
                             </tr>
