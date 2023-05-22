@@ -28,3 +28,11 @@ axiosAdminClent.interceptors.request.use(
 );
 
 export default axiosAdminClent;
+
+export const createLogHistory = async (message: string) => {
+  try {
+    await axiosAdminClent.post("/log-history", { message });
+  } catch (error) {
+    console.log("error to log");
+  }
+};

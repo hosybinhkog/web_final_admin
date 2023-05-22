@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import axiosAdminClent from "../../apis";
+import axiosAdminClent, { createLogHistory } from "../../apis";
 import {
   CLEAR_ERRORS,
   GET_CUSTOMER_FAILER,
@@ -26,6 +26,10 @@ export const login = (email: string, password: string) => async (dispatch: Dispa
 
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `login admin ${error?.response?.data?.message || "Server internal ::: login failure"}`
+    );
     dispatch({
       type: LOGIN_FAILURE,
       payload:
@@ -76,6 +80,10 @@ export const getCustomer = () => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_CUSTOMER_SUCCESS, payload: data.users });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_CUSTOMER_FAILER,
       // @ts-ignore

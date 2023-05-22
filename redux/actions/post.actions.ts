@@ -1,4 +1,4 @@
-import axiosAdminClent from "@/apis";
+import axiosAdminClent, { createLogHistory } from "@/apis";
 import {
   CLEAR_DELETE_POST_ERROR,
   CLEAR_GET_ALL_POST_FAIL,
@@ -27,6 +27,10 @@ export const getPosts = () => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_ALL_POST_SUCCESS, payload: data.posts });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_ALL_POST_FAIL,
       // @ts-ignore
@@ -43,6 +47,10 @@ export const getPost = (id: string) => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_POST_SUCCESS, payload: data.post });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_POST_ERROR,
       // @ts-ignore
@@ -61,6 +69,10 @@ export const togglePublicPost = () => async (dispath: Dispatch) => {
     const { data } = await axiosAdminClent.get("/toggle-publish/post/:id");
     dispath({ type: TOGGLE_POST_PUBLIC_SUCCESS, payload: data.success });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     // @ts-ignore
     dispath({ type: TOGGLE_POST_PUBLIC_ERROR, payload: error?.response?.data?.message });
   }
@@ -76,6 +88,10 @@ export const deletePostById = (id: string | number) => async (dispatch: Dispatch
     const { data } = await axiosAdminClent.delete(`/${id}`);
     dispatch({ type: DELETE_POST_ERROR, payload: data.success });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: DELETE_POST_ERROR,
       // @ts-ignore

@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import axiosAdminClent from "../../apis";
+import axiosAdminClent, { createLogHistory } from "../../apis";
 import {
   CREATE_CATEGORY_STREAM_ERROR,
   CREATE_CATEGORY_STREAM_REQEST,
@@ -27,6 +27,10 @@ export const getAllCategoryStream = () => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_ALL_CATEGORY_STREAN_SUCCESS, payload: data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_ALL_CATEGORY_STREAN_FAILURE,
       // @ts-ignore
@@ -48,6 +52,10 @@ export const getCategoryStreamById = (id: string) => async (dispatch: Dispatch) 
 
     dispatch({ type: GET_CATEGORY_STREAM_SUCCESS, payload: data.category });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_CATEGORY_STREAM_FAILURE,
       // @ts-ignore
@@ -74,6 +82,10 @@ export const updateCategoryStream = (id: string, dataInput: any) => async (dispa
       payload: data.updateCategory,
     });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: UPDATE_CATEGORY_STREAM_FAILURE,
       // @ts-ignore
@@ -98,6 +110,10 @@ export const createCategoryStream = (dataInput: any) => async (dispatch: Dispatc
       payload: data.newCategoryStream,
     });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: CREATE_CATEGORY_STREAM_ERROR,
       // @ts-ignore

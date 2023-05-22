@@ -4,7 +4,7 @@ import {
   GET_ALL_DATA_SUCCES,
 } from "./../../constants/redux.contants";
 import { Dispatch } from "redux";
-import axiosAdminClent from "../../apis";
+import axiosAdminClent, { createLogHistory } from "../../apis";
 
 /**
  * @author {HoBinh}
@@ -18,6 +18,10 @@ export const getDataIndex = () => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_ALL_DATA_SUCCES, payload: data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_ALL_DATA_ERROR,
       // @ts-ignore

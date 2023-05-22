@@ -1,4 +1,4 @@
-import axiosAdminClent from "@/apis";
+import axiosAdminClent, { createLogHistory } from "@/apis";
 import { Dispatch } from "redux";
 import {
   CLEAR_CREATE_CATEGORY_POST_FAIL,
@@ -29,6 +29,10 @@ export const fetchAllCategoiesPost = () => async (dispatch: Dispatch) => {
     const { data } = await axiosAdminClent.get("/category-post");
     dispatch({ type: GET_ALL_CATEGORY_POST_SUCCESS, payload: data.categories });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_ALL_CATEGORY_POST_ERROR,
       // @ts-ignore
@@ -49,6 +53,10 @@ export const createCategoyPost = (dataFormCreateCatePost: any) => async (dispatc
     const { data } = await axiosAdminClent.post("/category-post", dataFormCreateCatePost);
     dispatch({ type: CREATE_CATEGORY_POST_SUCCESS, payload: data.newCategoryPost });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: CREATE_CATEGORY_POST_FAIL,
       // @ts-ignore
@@ -73,6 +81,10 @@ export const getCategoryPost = (id: string | number) => async (dispatch: Dispatc
     const { data } = await axiosAdminClent.get(`/category-post/${id}`);
     dispatch({ type: GET_CATEGORY_POST_SUCCESS, payload: data.category });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_CATEGORY_POST_ERRROR, // @ts-ignore
       payload: error?.response?.data?.message,
@@ -93,6 +105,10 @@ export const updateCategoryPost =
       const { data } = await axiosAdminClent.put(`/category-post/${id}`, dataUpdate);
       dispatch({ type: UPDATE_CATEGORY_POST_SUCCESS, payload: data.updateCategory });
     } catch (error) {
+      await createLogHistory(
+        // @ts-ignore
+        `${error?.response?.data?.message}`
+      );
       dispatch({
         type: UPDATE_CATEGORY_POST_ERROR,
         // @ts-ignore

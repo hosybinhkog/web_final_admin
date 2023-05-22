@@ -1,4 +1,4 @@
-import axiosAdminClent from "@/apis";
+import axiosAdminClent, { createLogHistory } from "@/apis";
 import {
   GET_ALL_REPORT_POST_ERROR,
   GET_ALL_REPORT_POST_REQUEST,
@@ -15,6 +15,10 @@ export const getReportsPost = () => async (dispatch: Dispatch) => {
     const { data } = await axiosAdminClent.get("/report-post");
     dispatch({ type: GET_ALL_REPORT_POST_SUCCESS, payload: data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_ALL_REPORT_POST_ERROR,
       // @ts-ignore
@@ -29,6 +33,10 @@ export const getReportPost = (id: string) => async (dispatch: Dispatch) => {
     const { data } = await axiosAdminClent.get("/report-post/get-one/" + id);
     dispatch({ type: GET_REPORT_POST_SUCCESS, payload: data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_REPORT_POST_ERROR,
       // @ts-ignore

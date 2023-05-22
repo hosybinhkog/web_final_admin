@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import axiosAdminClent from "../../apis";
+import axiosAdminClent, { createLogHistory } from "../../apis";
 import {
   CREATE_REPORT_TYPE_POST_FAIL,
   CREATE_REPORT_TYPE_POST_REQUEST,
@@ -26,6 +26,10 @@ export const createNewReportTypePost = (dataInput: any) => async (dispatch: Disp
       payload: data.reportPostCategory,
     });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: CREATE_REPORT_TYPE_POST_FAIL,
       // @ts-ignore
@@ -45,6 +49,10 @@ export const getAllReportTypesPost = () => async (dispath: Dispatch) => {
       payload: data,
     });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispath({
       type: GET_ALL_REPORTS_TYPE_POST_ERROR,
       // @ts-ignore
@@ -65,6 +73,10 @@ export const updateAllReportTypePost =
         payload: data.reportPostCategory,
       });
     } catch (error) {
+      await createLogHistory(
+        // @ts-ignore
+        `${error?.response?.data?.message}`
+      );
       dispath({
         type: UPDATE_REPORT_TYPE_POST_ERROR,
         // @ts-ignore
@@ -84,6 +96,10 @@ export const getSingleReportTypePost = (id: string) => async (dispath: Dispatch)
       payload: data.reportPost,
     });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispath({
       type: GET_REPORT_TYPE_POST_ERROR,
       // @ts-ignore

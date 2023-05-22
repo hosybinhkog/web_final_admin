@@ -1,4 +1,4 @@
-import axiosAdminClent from "@/apis";
+import axiosAdminClent, { createLogHistory } from "@/apis";
 import {
   GET_VIDEOS_ERROR,
   GET_VIDEOS_REQUEST,
@@ -17,6 +17,10 @@ export const getVideos = () => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_VIDEOS_SUCCESS, payload: data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_VIDEOS_ERROR,
       // @ts-ignore
@@ -33,6 +37,10 @@ export const getVideo = (id: string) => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_VIDEO_SUCCESS, payload: data.data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_VIDEO_ERROR,
       // @ts-ignore

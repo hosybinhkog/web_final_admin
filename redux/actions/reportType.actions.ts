@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import axiosAdminClent from "../../apis";
+import axiosAdminClent, { createLogHistory } from "../../apis";
 import {
   CREATE_REPORT_TYPE_FAIL,
   CREATE_REPORT_TYPE_REQUEST,
@@ -38,6 +38,10 @@ export const createNewReportType =
         payload: data.newReportType,
       });
     } catch (error) {
+      await createLogHistory(
+        // @ts-ignore
+        `${error?.response?.data?.message}`
+      );
       dispatch({
         type: CREATE_REPORT_TYPE_FAIL,
         // @ts-ignore
@@ -57,6 +61,10 @@ export const getAllReportTypes = () => async (dispath: Dispatch) => {
       payload: data,
     });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispath({
       type: GET_ALL_REPORTS_TYPE_ERROR,
       // @ts-ignore
@@ -65,45 +73,48 @@ export const getAllReportTypes = () => async (dispath: Dispatch) => {
   }
 };
 
-export const updateAllReportType =
-  (params: string, dataForm: any) => async (dispath: Dispatch) => {
-    try {
-      dispath({ type: UPDATE_REPORT_TYPE_REQUEST });
+export const updateAllReportType = (params: string, dataForm: any) => async (dispath: Dispatch) => {
+  try {
+    dispath({ type: UPDATE_REPORT_TYPE_REQUEST });
 
-      const { data } = await axiosAdminClent.put(
-        `/report-type/${params}`,
-        dataForm
-      );
+    const { data } = await axiosAdminClent.put(`/report-type/${params}`, dataForm);
 
-      dispath({
-        type: UPDATE_REPORT_TYPE_SUCCESS,
-        payload: data.updateReportType,
-      });
-    } catch (error) {
-      dispath({
-        type: UPDATE_REPORT_TYPE_ERROR,
-        // @ts-ignore
-        payload: error?.response?.data?.message || "updateAllReportType error",
-      });
-    }
-  };
+    dispath({
+      type: UPDATE_REPORT_TYPE_SUCCESS,
+      payload: data.updateReportType,
+    });
+  } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
+    dispath({
+      type: UPDATE_REPORT_TYPE_ERROR,
+      // @ts-ignore
+      payload: error?.response?.data?.message || "updateAllReportType error",
+    });
+  }
+};
 
-export const getSingleReportType =
-  (id: string) => async (dispath: Dispatch) => {
-    try {
-      dispath({ type: GET_REPORT_TYPE_REQUEST });
+export const getSingleReportType = (id: string) => async (dispath: Dispatch) => {
+  try {
+    dispath({ type: GET_REPORT_TYPE_REQUEST });
 
-      const { data } = await axiosAdminClent.get(`/report-type/${id}`);
+    const { data } = await axiosAdminClent.get(`/report-type/${id}`);
 
-      dispath({
-        type: GET_REPORT_TYPE_SUCCESS,
-        payload: data.reportType,
-      });
-    } catch (error) {
-      dispath({
-        type: GET_REPORT_TYPE_ERROR,
-        // @ts-ignore
-        payload: error?.response?.data?.message || "getSingleReportType error",
-      });
-    }
-  };
+    dispath({
+      type: GET_REPORT_TYPE_SUCCESS,
+      payload: data.reportType,
+    });
+  } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
+    dispath({
+      type: GET_REPORT_TYPE_ERROR,
+      // @ts-ignore
+      payload: error?.response?.data?.message || "getSingleReportType error",
+    });
+  }
+};

@@ -1,4 +1,4 @@
-import axiosAdminClent from "@/apis";
+import axiosAdminClent, { createLogHistory } from "@/apis";
 import {
   GET_STREAMS_ERROR,
   GET_STREAMS_REQUEST,
@@ -17,6 +17,10 @@ export const getStreams = () => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_STREAMS_SUCCESS, payload: data.data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_STREAMS_ERROR,
       // @ts-ignore
@@ -33,6 +37,10 @@ export const getStream = (id: string) => async (dispatch: Dispatch) => {
 
     dispatch({ type: GET_STREAM_SUCCESS, payload: data.data });
   } catch (error) {
+    await createLogHistory(
+      // @ts-ignore
+      `${error?.response?.data?.message}`
+    );
     dispatch({
       type: GET_STREAM_ERROR,
       // @ts-ignore
