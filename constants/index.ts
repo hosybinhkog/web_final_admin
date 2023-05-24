@@ -74,6 +74,16 @@ export const sidebarRoutes = [
     route: "/reports-streams",
     icon: CogIcon,
   },
+  {
+    display_name: "reports videos",
+    route: "/reports-videos",
+    icon: CogIcon,
+  },
+  {
+    display_name: "reports videos cate",
+    route: "/reports-videos-cate",
+    icon: CogIcon,
+  },
 
   {
     display_name: "settings",

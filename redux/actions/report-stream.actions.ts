@@ -13,7 +13,7 @@ export const getReportsStream = () => async (dispatch: Dispatch) => {
   try {
     dispatch({ type: GET_ALL_REPORT_STREAM_REQUEST });
     const { data } = await axiosAdminClent.get("/report-stream");
-    dispatch({ type: GET_ALL_REPORT_STREAM_SUCCESS, payload: data });
+    dispatch({ type: GET_ALL_REPORT_STREAM_SUCCESS, payload: data.reports });
   } catch (error) {
     await createLogHistory(
       // @ts-ignore

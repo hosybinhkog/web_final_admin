@@ -10,3 +10,4 @@ export * from "./category.reducer";
 export * from "./post.reducer";
 export * from "./video.reducer";
 export * from "./report-types-post.reducer";
+export * from "./report-categories-video.reducer";

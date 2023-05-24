@@ -5,3 +5,5 @@ export * from "./post.actions";
 export * from "./reportType.actions";
 export * from "./streammer.actions";
 export * from "./user.action";
+export * from "./report-categories-video.action";
+export * from "./report-video-stream.action";

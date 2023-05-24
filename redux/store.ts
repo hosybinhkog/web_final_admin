@@ -1,3 +1,8 @@
+import { getAllReportPostDetailsReducer } from "./reducers/report-details.reducer";
+import {
+  getAllReportVideoReducer,
+  getReportVideoReducer,
+} from "./reducers/report-video-stream.reducer";
 import { getAllReportStreamducer, getReportStreamReducer } from "./reducers/report-stream.reducer";
 import { getAllReportPostReducer, getReportPostReducer } from "./reducers/report-post.reducer";
 import { updateReportTypePostReducer } from "./reducers/report-types-post.reducer";
@@ -32,6 +37,10 @@ import {
   createReportTypePostReducer,
   getAllReportTypePostReducer,
   getReportTypePostReducer,
+  createReportTypeVideoReducer,
+  getAllReportTypeVideoReducer,
+  getReportTypeVideoReducer,
+  updateReportTypeVideoReducer,
 } from "./reducers";
 
 import getStreamsReducer, { getStreamReducer } from "./reducers/stream.reducer";
@@ -71,6 +80,13 @@ const reducers = combineReducers({
   getReportPostReducer,
   getAllReportStreamducer,
   getReportStreamReducer,
+  createReportTypeVideoReducer,
+  getAllReportTypeVideoReducer,
+  getReportTypeVideoReducer,
+  updateReportTypeVideoReducer,
+  getAllReportVideoReducer,
+  getReportVideoReducer,
+  getAllReportPostDetailsReducer,
 });
 
 const middleware = [thunk];
